@@ -8,6 +8,12 @@ import { savePaymentMethod } from '../actions/cartActions'
 const PaymentScreen = ({ history }) => {
   const cart = useSelector((state) => state.cart)
   const { shippingAddress } = cart
+  const userLogin = useSelector ( state => state.userLogin)
+  const { userInfo } = userLogin;
+  
+  if(!userInfo){
+    history.push('/login')
+  }// if user is logged in only then he is allowed for payment or shipping
 
   if (!shippingAddress.address) {
     history.push('/shipping')
